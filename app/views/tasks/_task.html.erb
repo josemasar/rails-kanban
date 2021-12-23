@@ -1,4 +1,5 @@
 <div id="<%= dom_id task %>">
+<% if action_name != "index" %>
   <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
     <%= task.title %>
@@ -39,4 +40,47 @@
     <%= link_to 'Edit this task', edit_task_path(task), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
+
+  <% else %>
+  <div class=" w-52 py-1 border-2 rounded-md shadow
+  transition ease-in-out delay-150 hover:bg-blue-50 duration-300">
+    <p class="text-center">
+      <%= task.title %>
+    </p>
+
+    <p class="text-center">
+      <%= task.project %>
+    </p>
+
+    <p class="text-center">
+      <%= task.owner %>
+    </p>
+
+    <p class="text-center">
+      <strong class="font-medium text-xs">Required by:</strong>
+      <%= task.required_by.strftime('%Y-%m-%d') %>
+    </p>
+    <% if !task.completed.nil? %>
+      <p class="text-center">
+        <strong class="block font-medium text-xs">Completed:</strong>
+        <%= task.completed.strftime('%Y-%m-%d') %>
+      </p>
+    <% end %>
+    <div class="flex flex-row justify-center space-x-4">
+    <% if action_name != "show" %>
+      <%= link_to task do %>
+        <div class="w-6">
+          <%= image_tag "eye.svg", id:"eye" %>
+        </div>
+      <% end %>
+
+      <%= link_to edit_task_path(task) do %>
+       <div class="w-6">
+          <%= image_tag "pencil.svg", id:"pencil" %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+<% end %>
 </div>
