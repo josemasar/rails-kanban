@@ -42,12 +42,16 @@
   <% end %>
 
   <% else %>
-  <div class=" w-52 py-1 border-2 rounded-md shadow
+  <div class="w-56 h-80 border-2 rounded-md shadow
   transition ease-in-out delay-150 hover:bg-blue-50 duration-300">
-    <p class="text-center">
+    <p class="text-lg font-semibold text-center mb-1">
       <%= task.title %>
     </p>
-
+    <div class="container mx-auto max-w-md max-h-48 mb-1">
+    <p class="text-center">
+    <%= task.description %>
+    </p>
+    </div>
     <p class="text-center">
       <%= task.project %>
     </p>
@@ -55,18 +59,19 @@
     <p class="text-center">
       <%= task.owner %>
     </p>
-
+    <% if task.completed.nil? %>
     <p class="text-center">
-      <strong class="font-medium text-xs">Required by:</strong>
+      <strong class="font-medium">Required by:</strong>
       <%= task.required_by.strftime('%Y-%m-%d') %>
     </p>
+    <% end %>
     <% if !task.completed.nil? %>
       <p class="text-center">
-        <strong class="block font-medium text-xs">Completed:</strong>
+        <strong class="font-medium">Completed:</strong>
         <%= task.completed.strftime('%Y-%m-%d') %>
       </p>
     <% end %>
-    <div class="flex flex-row justify-center space-x-4">
+    <div class="flex flex-row justify-center space-x-4 my-1">
     <% if action_name != "show" %>
       <%= link_to task do %>
         <div class="w-6">
