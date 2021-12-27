@@ -9,14 +9,23 @@
   </div>
 
   <div id="tasks" class="grid grid-cols3 gap-4">
+    <div class="border rounded-md bg-gray-100">
+      <p class="font-semibold text-center">Work Queue</p>
+    </div>    
+    <div class="border rounded-md bg-gray-200">
+      <p class="font-semibold text-center">In Progress</p>
+    </div>
+    <div class="border rounded-md bg-gray-300">
+      <p class="font-semibold text-center">Completed</p>
+    </div>   
     <div class="col-start-1 gap-4 p-2 border rounded-lg flex flex-row flex-wrap">
-    <%= render @tasks.where(:status => 'Work Queue') %>
+      <%= render @tasks.where(:status => 'Work Queue') %>
     </div>
     <div class="col-start-2 gap-4 p-2 border rounded-lg flex flex-row flex-wrap">
-    <%= render @tasks.where(:status => 'In Progress')  %>
+      <%= render @tasks.where(:status => 'In Progress')  %>
     </div>
     <div class="col-start-3 p-2 gap-4 border rounded-lg flex flex-row flex-wrap">
-    <%= render @tasks.where(:status => 'Completed')  %>
+      <%= render @tasks.where(:status => 'Completed')  %>
     </div>
   </div>
 </div>

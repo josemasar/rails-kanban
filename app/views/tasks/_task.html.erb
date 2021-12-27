@@ -43,7 +43,7 @@
 
   <% else %>
   <div class="w-56 h-80 border-2 rounded-md shadow
-  transition ease-in-out delay-150 hover:bg-blue-50 duration-300">
+  transition ease-in-out hover:bg-gray-100 duration-200">
     <p class="text-lg font-semibold text-center mb-1">
       <%= task.title %>
     </p>
@@ -60,15 +60,14 @@
       <%= task.owner %>
     </p>
     <% if task.completed.nil? %>
-    <p class="text-center">
-      <strong class="font-medium">Required by:</strong>
-      <%= task.required_by.strftime('%Y-%m-%d') %>
+    <p class="text-center text-xs ">
+      <strong class="font-medium">Required by</strong>
+      <%= time_tag task.required_by, "data-local": "weekday-or-date" %>
     </p>
     <% end %>
     <% if !task.completed.nil? %>
-      <p class="text-center">
-        <strong class="font-medium">Completed:</strong>
-        <%= task.completed.strftime('%Y-%m-%d') %>
+      <p class="mx-auto text-center text-xs border rounded-lg bg-green-300 w-16">
+        <%= time_tag task.completed,"data-local": "time-ago" %>
       </p>
     <% end %>
     <div class="flex flex-row justify-center space-x-4 my-1">
